@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="hisausapps_menu_main"
+              web_icon="hisausapps/description/icon.png"
+              name="Hisausapps" sequence="200"/>
+
+    <menuitem id="hisausapps_settings_main_menu"
+              parent="hisausapps_menu_main"
+              name="Settings" sequence="300"/>
+</odoo>

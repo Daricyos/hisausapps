@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hisausapps_key_tree" model="ir.ui.view">
+        <field name="name">ks.hisa.key (Hisausapps)</field>
+        <field name="model">ks.hisa.key</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="key"/>
+            </tree>
+        </field>
+    </record>
+    <record id="hisausapps_key_form" model="ir.ui.view">
+        <field name="name">ks.hisa.key (Hisausapps)</field>
+        <field name="model">ks.hisa.key</field>
+        <field name="arch" type="xml">
+            <form>
+                <heeder>
+                    <button name="button_get_ruling_all" type="object" string="Get Ruling All"/>
+                </heeder>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="key"/>
+                    </group>
+                    <notebook>
+                        <page string="Ruling All (Request Params)">
+                            <group>
+                                <field name="ruling_all_text"/>
+                                <field name="ruling_all_page"/>
+                                <field name="ruling_all_page_size"/>
+                                <field name="ruling_all_sort_by"/>
+                                <field name="ruling_all_sort_direction"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hisausapps_key_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Key</field>
+        <field name="res_model">ks.hisa.key</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hisausapps_key_menu_1"
+              parent="hisausapps_settings_main_menu"
+              action="hisausapps_key_action_window"
+              name="Key" sequence="400"/>
+</odoo>

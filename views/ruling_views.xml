@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hisausapps_ruling_tree" model="ir.ui.view">
+        <field name="name">ks.hisa.ruling (Hisausapps)</field>
+        <field name="model">ks.hisa.ruling</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="hisa_ruling_id"/>
+                <field name="action_code"/>
+                <field name="customCode"/>
+                <field name="location_id"/>
+                <field name="persons_involved_ids"/>
+            </tree>
+        </field>
+    </record>
+    <record id="hisausapps_ruling_form" model="ir.ui.view">
+        <field name="name">ks.hisa.ruling (Hisausapps)</field>
+        <field name="model">ks.hisa.ruling</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="hisa_ruling_id"/>
+                        <field name="action_code"/>
+                        <field name="customCode"/>
+                        <field name="location_id"/>
+                        <field name="persons_involved_ids">
+                            <tree>
+                                <field name="hisa_person_id"/>
+                                <field name="person_name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hisausapps_ruling_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Rulings</field>
+        <field name="res_model">ks.hisa.ruling</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hisausapps_rulings_main_menu"
+              parent="hisausapps_menu_main"
+              action="hisausapps_ruling_action_window"
+              name="Rulings" sequence="200"/>
+</odoo>

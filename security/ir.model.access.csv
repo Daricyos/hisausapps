@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+hisausapps.access_ks_hisa_key,access_ks_hisa_key,hisausapps.model_ks_hisa_key,base.group_user,1,1,1,1
+hisausapps.access_ks_hisa_ruling_persons_involved,access_ks_hisa_ruling_persons_involved,hisausapps.model_ks_hisa_ruling_persons_involved,base.group_user,1,1,1,1
+hisausapps.access_ks_hisa_ruling,access_ks_hisa_ruling,hisausapps.model_ks_hisa_ruling,base.group_user,1,1,1,1
