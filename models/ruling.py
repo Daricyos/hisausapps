@@ -14,6 +14,7 @@ class KeyHisausappsRuling(models.Model):
     customCode = fields.Char()
     location_id = fields.Char(string='location ID', )
     persons_involved_ids = fields.Many2many(comodel_name='ks.hisa.ruling.persons.involved', )
+    files_uri_ids = fields.One2many(comodel_name='ks.hisa.files.uri', inverse_name='hisa_ruling_id')
 
 
 class KeyHisausappsRulingPersonsInvolved(models.Model):
@@ -22,6 +23,13 @@ class KeyHisausappsRulingPersonsInvolved(models.Model):
 
     hisa_person_id = fields.Char(string='Hisa Ruling ID')
     person_name = fields.Char()
+
+
+class RulingFiles(models.Model):
+    _name = 'ks.hisa.files.uri'
+    _inherit = 'ir.attachment'
+
+    hisa_ruling_id = fields.Many2one(comodel_name='ks.hisa.ruling')
 
     # {
     #     "hisaRulingId": "R000000001",

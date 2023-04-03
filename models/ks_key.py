@@ -1,3 +1,4 @@
+import base64
 import logging
 
 from odoo import models, fields
@@ -33,11 +34,10 @@ class KeyHisausapps(models.Model):
             params['sortBy'] = self.ruling_all_sort_by
         if self.ruling_all_sort_direction:
             params['sortDirection'] = self.ruling_all_sort_direction
-        print(params)
         res = api.get_ruling_all(params=params)
-        self.load_rulings(res)
+        self.load_rulings(res, api)
 
-    def load_rulings(self, data):
+    def load_rulings(self, data, api):
         ruling_m = self.env['ks.hisa.ruling']
         for item in data:
             data_to_create = {
@@ -45,13 +45,27 @@ class KeyHisausapps(models.Model):
                 'action_code': item['actionCode'],
                 'customCode': item['customCode'],
                 'location_id': item['locationId'],
-                'persons_involved_ids': [(6, 0, self.get_persons_inv_from_data(item['personsInvolved']))]
+                'persons_involved_ids': [(6, 0, self.get_persons_inv_from_data(item['personsInvolved']))],
+                'files_uri_ids': [(6, 0, self.get_files_from_url(item['filesUri'], api))]
             }
             rul_id = ruling_m.search([('hisa_ruling_id', '=', item['hisaRulingId'])])
             if rul_id:
                 ruling_m.write(data_to_create)
             else:
                 ruling_m.create(data_to_create)
+
+    def get_files_from_url(self, urls, api):
+        docs_ids = []
+        print(urls)
+        for url in urls:
+            response = api.get_file_from_ruling(url)
+            doc_id = self.env['ks.hisa.files.uri'].create({
+                    'name': url.split('/')[-1],
+                    'res_field': url,
+                    'datas': base64.b64encode(response.content).replace(b'\n', b'', )
+                })
+            docs_ids.append(doc_id.id)
+        return docs_ids
 
     def get_persons_inv_from_data(self, data):
         persons_ids = []
