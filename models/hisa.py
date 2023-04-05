@@ -25,10 +25,10 @@ class HisaAPI:
             return res
         return False
 
-    def get_file_from_ruling(self, file_url='', ):
-        if file_url:
-            url = f'{self.link}{file_url}'
-            response = self.request(method='GET', url=url, params=None, is_files=True, )
-            return response
-        return False
+    # def get_file_from_ruling(self, file_url='', ):
+    #     if file_url:
+    #         url = f'{self.link}{file_url}'
+    #         response = self.request(method='GET', url=url, params=None, is_files=True, )
+    #         return response
+    #     return False
 

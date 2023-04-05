@@ -33,7 +33,6 @@
                     </group>
                     <notebook>
                         <page string="Files">
-                            <field name="files_uri_ids"/>
                         </page>
                     </notebook>
                 </sheet>

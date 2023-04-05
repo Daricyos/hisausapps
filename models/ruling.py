@@ -13,8 +13,9 @@ class KeyHisausappsRuling(models.Model):
     action_code = fields.Char()
     customCode = fields.Char()
     location_id = fields.Char(string='location ID', )
+    date_ruling = fields.Date()
     persons_involved_ids = fields.Many2many(comodel_name='ks.hisa.ruling.persons.involved', )
-    files_uri_ids = fields.One2many(comodel_name='ks.hisa.files.uri', inverse_name='hisa_ruling_id')
+    # files_uri_ids = fields.One2many(comodel_name='ks.hisa.files.uri', inverse_name='hisa_ruling_id')
 
 
 class KeyHisausappsRulingPersonsInvolved(models.Model):
@@ -24,12 +25,44 @@ class KeyHisausappsRulingPersonsInvolved(models.Model):
     hisa_person_id = fields.Char(string='Hisa Ruling ID')
     person_name = fields.Char()
 
+    fine_amount = fields.Float()
+    fine_recovery_amount = fields.Integer()
+    fine_recovery_date = fields.Date()
+    fine_paid = fields.Boolean()
+    fine_total = fields.Integer()
+    fine_amount_paid = fields.Integer()
+    fine_payment_due = fields.Date()
+    fine_installments_ids = fields.Many2many(comodel_name='ks.hisa.installments')
+    #не добавленно
+    # suspension_start = fields.Date()
+    # suspension_duration = fields.Integer()
+    # suspension_dates = fields.Date()
+    #
+    # points_amount = fields.Integer()
+    # points_expireDate = fields.Date()
+    # points_duration = fields.Integer()
 
-class RulingFiles(models.Model):
-    _name = 'ks.hisa.files.uri'
-    _inherit = 'ir.attachment'
 
-    hisa_ruling_id = fields.Many2one(comodel_name='ks.hisa.ruling')
+
+
+class RulingFineInstallments(models.Model):
+    _name = 'ks.hisa.installments'
+    _description = 'ks.hisa.installments'
+
+    installments_amount = fields.Integer()
+    installments_due_date = fields.Date()
+
+
+# class RulingFiles(models.Model):
+#     _name = 'ks.hisa.files.uri'
+#     _inherit = 'ir.attachment'
+#
+#     hisa_ruling_id = fields.Many2one(comodel_name='ks.hisa.ruling')
+
+
+
+
+
 
     # {
     #     "hisaRulingId": "R000000001",
