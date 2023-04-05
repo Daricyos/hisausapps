@@ -34,24 +34,28 @@ class KeyHisausappsRulingPersonsInvolved(models.Model):
     fine_payment_due = fields.Date()
     fine_installments_ids = fields.Many2many(comodel_name='ks.hisa.installments')
     #не добавленно
-    # suspension_start = fields.Date()
-    # suspension_duration = fields.Integer()
-    # suspension_dates = fields.Date()
-    #
-    # points_amount = fields.Integer()
-    # points_expireDate = fields.Date()
-    # points_duration = fields.Integer()
+    suspension_start = fields.Date()
+    suspension_duration = fields.Integer()
+    suspension_dates_ids = fields.Many2many(comodel_name='ks.hisa.suspernsion')
 
-
+    points_amount = fields.Float()
+    points_expireDate = fields.Date()
+    points_duration = fields.Integer()
 
 
 class RulingFineInstallments(models.Model):
     _name = 'ks.hisa.installments'
     _description = 'ks.hisa.installments'
 
-    installments_amount = fields.Integer()
+    installments_amount = fields.Float()
     installments_due_date = fields.Date()
 
+
+class RulingSuspensionDates(models.Model):
+    _name = 'ks.hisa.suspension'
+    _description = 'ks.hisa.suspension'
+
+    suspension_dates = fields.Date()
 
 # class RulingFiles(models.Model):
 #     _name = 'ks.hisa.files.uri'

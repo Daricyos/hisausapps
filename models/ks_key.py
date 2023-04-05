@@ -71,6 +71,7 @@ class KeyHisausapps(models.Model):
     def get_persons_inv_from_data(self, data):
         persons_ids = []
         for item in data:
+            print(data)
             print(item)
             pers_to_create = {
                 'hisa_person_id': item['hisaPersonId'],
@@ -82,7 +83,10 @@ class KeyHisausapps(models.Model):
                 'fine_total': item['fine']['total'] if item['fine'] is not None else None,
                 'fine_amount_paid': item['fine']['amountPaid'] if item['fine'] is not None else None,
                 'fine_payment_due': datetime.datetime.strptime(item['fine']['paymentDue'], "%Y-%m-%d").date() if item['fine'] is not None else None,
-                'fine_installments_ids': [(6, 0, self.get_persons_installments(item['fine']['installments']))] if item['fine'] is not None else None,
+                'fine_installments_ids': [(6, 0, self.get_persons_installments(item['fine']['installments']))] if item['fine'] is not None and item['fine']['installments'] is not None else None,
+                'suspension_start': item['suspension']['start'] if item['suspension'] is not None else None,
+                'suspension_duration': item['suspension']['duration'] if item['suspension'] is not None else None,
+                'suspension_dates': [(6, 0, self.get_persons_installments(item['suspension']['dates']))] if item['suspension'] is not None and item['suspension']['dates'] is not None else None,
             }
             per_id = self.env['ks.hisa.ruling.persons.involved'].create(pers_to_create)
             persons_ids.append(per_id.id)
@@ -90,13 +94,24 @@ class KeyHisausapps(models.Model):
 
     def get_persons_installments(self, data):
         installments_ids = []
+        print(data)
         for item in data:
+            print(item)
             installments_to_create = {
-                'installments_amount': item['fine']['installments']['amount'] if item['fine'] is not None and item['fine']['installments'] is not None else None,
-                'installments_due_date': datetime.datetime.strptime(item['fine']['installments']['dueDate'], "%Y-%m-%d").date() if item['fine'] is not None and item['fine']['installments'] is not None else None,
+                'installments_amount': item['amount'],
+                'installments_due_date': datetime.datetime.strptime(item['dueDate'], "%Y-%m-%d").date(),
             }
             inst_id = self.env['ks.hisa.installments'].create(installments_to_create)
             installments_ids.append(inst_id.id)
         return installments_ids
 
+    def get_persons_suspension(self, data):
+        suspension_ids = []
+        for item in data:
+            suspension_to_create = {
+                'suspension_dates': datetime.datetime.strptime(item['dates'], "%Y-%m-%d").date()
+            }
+            suspen_id = self.env['ks.hisa.suspension'].create(suspension_to_create)
+            suspension_ids.append(suspen_id.id)
+        return suspension_ids
 

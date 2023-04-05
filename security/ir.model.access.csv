@@ -3,3 +3,4 @@ hisausapps.access_ks_hisa_key,access_ks_hisa_key,hisausapps.model_ks_hisa_key,ba
 hisausapps.access_ks_hisa_ruling_persons_involved,access_ks_hisa_ruling_persons_involved,hisausapps.model_ks_hisa_ruling_persons_involved,base.group_user,1,1,1,1
 hisausapps.access_ks_hisa_ruling,access_ks_hisa_ruling,hisausapps.model_ks_hisa_ruling,base.group_user,1,1,1,1
 hisausapps.access_ks_hisa_installments,access_ks_hisa_installments,hisausapps.model_ks_hisa_installments,base.group_user,1,1,1,1
+hisausapps.access_ks_hisa_suspension,access_ks_hisa_suspension,hisausapps.model_ks_hisa_suspension,base.group_user,1,1,1,1
