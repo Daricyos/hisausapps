@@ -71,8 +71,6 @@ class KeyHisausapps(models.Model):
     def get_persons_inv_from_data(self, data):
         persons_ids = []
         for item in data:
-            print(data)
-            print(item)
             pers_to_create = {
                 'hisa_person_id': item['hisaPersonId'],
                 'person_name': item['personName'],
@@ -86,7 +84,18 @@ class KeyHisausapps(models.Model):
                 'fine_installments_ids': [(6, 0, self.get_persons_installments(item['fine']['installments']))] if item['fine'] is not None and item['fine']['installments'] is not None else None,
                 'suspension_start': item['suspension']['start'] if item['suspension'] is not None else None,
                 'suspension_duration': item['suspension']['duration'] if item['suspension'] is not None else None,
-                'suspension_dates': [(6, 0, self.get_persons_installments(item['suspension']['dates']))] if item['suspension'] is not None and item['suspension']['dates'] is not None else None,
+                'suspension_dates_ids': [(6, 0, self.get_persons_suspension(item['suspension']['dates']))] if item['suspension'] is not None and item['suspension']['dates'] is not None else None,
+                'points_amount': item['points']['amount'] if item['points'] and item['points']['amount'] is not None else None,
+                'points_expire_date': item['points']['expireDate'] if item['points'] and item['points']['expireDate'] is not None else None,
+                'points_duration': item['points']['duration'] if item['points'] and item['points']['duration'] is not None else None,
+                'purse_forfeiture_percent_amount': item['purseForfeiturePercent']['amount'] if item['purseForfeiturePercent'] and item['purseForfeiturePercent']['amount'] is not None else None,
+                'purse_forfeiture_percent_paid': item['purseForfeiturePercent']['paid'] if item['purseForfeiturePercent'] and item['purseForfeiturePercent']['paid'] is not None else None,
+                'purse_forfeiture_percent_disqualified': item['purseForfeiturePercent']['disqualified'] if item['purseForfeiturePercent'] and item['purseForfeiturePercent']['disqualified'] is not None else None,
+                'purse_forfeiture_percent_withheld': item['purseForfeiturePercent']['withheld'] if item['purseForfeiturePercent'] and item['purseForfeiturePercent']['withheld'] is not None else None,
+                'required_actions_description': item['requiredActions']['description'] if item['requiredActions'] and item['requiredActions']['description'] is not None else None,
+                'required_actions_completed': item['requiredActions']['completed'] if item['requiredActions'] and item['requiredActions']['completed'] is not None else None,
+                'required_actions_complete_by_date': item['requiredActions']['completeByDate'] if item['requiredActions'] and item['requiredActions']['completeByDate'] is not None else None,
+                'required_actions_fine_per_calendar_day': item['requiredActions']['finePerCalendarDay'] if item['requiredActions'] and item['requiredActions']['finePerCalendarDay'] is not None else None,
             }
             per_id = self.env['ks.hisa.ruling.persons.involved'].create(pers_to_create)
             persons_ids.append(per_id.id)
@@ -94,9 +103,7 @@ class KeyHisausapps(models.Model):
 
     def get_persons_installments(self, data):
         installments_ids = []
-        print(data)
         for item in data:
-            print(item)
             installments_to_create = {
                 'installments_amount': item['amount'],
                 'installments_due_date': datetime.datetime.strptime(item['dueDate'], "%Y-%m-%d").date(),
@@ -109,7 +116,7 @@ class KeyHisausapps(models.Model):
         suspension_ids = []
         for item in data:
             suspension_to_create = {
-                'suspension_dates': datetime.datetime.strptime(item['dates'], "%Y-%m-%d").date()
+                'suspension_dates': item,
             }
             suspen_id = self.env['ks.hisa.suspension'].create(suspension_to_create)
             suspension_ids.append(suspen_id.id)

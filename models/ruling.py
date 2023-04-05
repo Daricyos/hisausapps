@@ -33,14 +33,43 @@ class KeyHisausappsRulingPersonsInvolved(models.Model):
     fine_amount_paid = fields.Integer()
     fine_payment_due = fields.Date()
     fine_installments_ids = fields.Many2many(comodel_name='ks.hisa.installments')
-    #не добавленно
+
     suspension_start = fields.Date()
     suspension_duration = fields.Integer()
-    suspension_dates_ids = fields.Many2many(comodel_name='ks.hisa.suspernsion')
+    suspension_dates_ids = fields.Many2many(comodel_name='ks.hisa.suspension')
 
     points_amount = fields.Float()
-    points_expireDate = fields.Date()
+    points_expire_date = fields.Date()
     points_duration = fields.Integer()
+    # не добавленно
+    purse_forfeiture_percent_amount = fields.Float()
+    purse_forfeiture_percent_paid = fields.Boolean()
+    purse_forfeiture_percent_disqualified = fields.Boolean()
+    purse_forfeiture_percent_withheld = fields.Boolean()
+
+    required_actions_description = fields.Char()
+    required_actions_completed = fields.Boolean()
+    required_actions_complete_by_date = fields.Date()
+    required_actions_fine_per_calendar_day = fields.Float()
+
+    details_regulation_number = fields.Char()
+    details_description = fields.Char()
+    details_stewards_ruling = fields.Char()
+    details_rsc_ruling = fields.Char()
+    details_nsp_ruling = fields.Char()
+    details_arbitral_ruling = fields.Char()
+    details_hisa_board_apeal_ruling = fields.Char()
+    details_nsp_board_panel_ruling = fields.Char()
+    details_hisa_board_ruling = fields.Char()
+
+    status = fields.Char()
+    status_display_name = fields.Char()
+    ruling_date = fields.Char()
+    hearing_date = fields.Char()
+    date_entered = fields.Char()
+
+
+
 
 
 class RulingFineInstallments(models.Model):
