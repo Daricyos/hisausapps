@@ -15,6 +15,35 @@ class KeyHisausappsRuling(models.Model):
     location_id = fields.Char(string='location ID', )
     date_ruling = fields.Date()
     persons_involved_ids = fields.Many2many(comodel_name='ks.hisa.ruling.persons.involved', )
+    horses_involved_ids = fields.Many2many(comodel_name='ks.hisa.horses.involved', )
+
+    adjudicators_hisa_board_id = fields.Char()
+    adjudicators_hisa_board_panel_id = fields.Char()
+    adjudicators_hisa_arbitral_panel_id = fields.Char()
+    adjudicators_hisa_rsc_members_id = fields.Char()
+    adjudicators_hisa_nsp_members_id = fields.Char()
+    adjudicators_hisa_track_stewards_id = fields.Char()
+
+    status = fields.Char()
+    stage = fields.Char()
+    ruling_body = fields.Char()
+    can_be_appealed = fields.Boolean()
+    ruling_date = fields.Date()
+    date_entered = fields.Date()
+    last_day_of_appeal = fields.Date()
+    horse_id = fields.Char()
+    race_number = fields.Char()
+    responsible_person_hisaId = fields.Char()
+    owner_hisa_id = fields.Char()
+    classification = fields.Char()
+    location_name = fields.Char()
+    horse_name = fields.Char()
+    responsible_person_name = fields.Char()
+    owner_name = fields.Char()
+    status_display_name = fields.Char()
+    reporting_date = fields.Date()
+
+
     # files_uri_ids = fields.One2many(comodel_name='ks.hisa.files.uri', inverse_name='hisa_ruling_id')
 
 
@@ -69,9 +98,6 @@ class KeyHisausappsRulingPersonsInvolved(models.Model):
     date_entered = fields.Char()
 
 
-
-
-
 class RulingFineInstallments(models.Model):
     _name = 'ks.hisa.installments'
     _description = 'ks.hisa.installments'
@@ -86,6 +112,28 @@ class RulingSuspensionDates(models.Model):
 
     suspension_dates = fields.Date()
 
+
+class RulingHorsesInvolved(models.Model):
+    _name = 'ks.hisa.horses.involved'
+    _description = 'ks.hisa.horses.involved'
+
+    hisa_horse_id = fields.Char()
+    horse_name = fields.Char()
+    suspension_start = fields.Char()
+    suspension_duration = fields.Integer()
+    suspension_dates_ids = fields.Many2many(comodel_name='ks.hisa.horses.suspension')
+    barred_from_racing = fields.Boolean()
+
+
+class RulingHorsesSuspension(models.Model):
+    _name = 'ks.hisa.horses.suspension'
+    _description = 'ks.hisa.horses.suspension'
+
+    suspension_dates = fields.Date()
+
+
+
+#ДОКУМЕНТИ
 # class RulingFiles(models.Model):
 #     _name = 'ks.hisa.files.uri'
 #     _inherit = 'ir.attachment'

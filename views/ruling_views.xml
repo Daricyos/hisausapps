@@ -20,19 +20,59 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="hisa_ruling_id"/>
-                        <field name="action_code"/>
-                        <field name="customCode"/>
-                        <field name="location_id"/>
-                        <field name="persons_involved_ids">
-                            <tree>
-                                <field name="hisa_person_id"/>
-                                <field name="person_name"/>
-                            </tree>
-                        </field>
+                        <group>
+                            <field name="hisa_ruling_id"/>
+                            <field name="action_code"/>
+                            <field name="customCode"/>
+                            <field name="location_id"/>
+                            <field name="date_ruling"/>
+                            <field name="status"/>
+                            <field name="stage"/>
+                            <field name="ruling_body"/>
+                            <field name="can_be_appealed"/>
+                            <field name="ruling_date"/>
+                            <field name="date_entered"/>
+                        </group>
+                        <group>
+                            <field name="last_day_of_appeal"/>
+                            <field name="horse_id"/>
+                            <field name="race_number"/>
+                            <field name="responsible_person_hisaId"/>
+                            <field name="classification"/>
+                            <field name="location_name"/>
+                            <field name="horse_name"/>
+                            <field name="responsible_person_name"/>
+                            <field name="owner_name"/>
+                            <field name="status_display_name"/>
+                            <field name="reporting_date"/>
+                        </group>
                     </group>
                     <notebook>
-                        <page string="Files">
+                        <page string="Adjudicators">
+                            <tree>
+                                <field name="adjudicators_hisa_board_id"/>
+                                <field name="adjudicators_hisa_board_panel_id"/>
+                                <field name="adjudicators_hisa_arbitral_panel_id"/>
+                                <field name="adjudicators_hisa_rsc_members_id"/>
+                                <field name="adjudicators_hisa_nsp_members_id"/>
+                                <field name="adjudicators_hisa_track_stewards_id"/>
+                            </tree>
+                        </page>
+                        <page string="Person">
+                            <field name="persons_involved_ids">
+                                <tree>
+                                    <field name="hisa_person_id"/>
+                                    <field name="person_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Horses">
+                            <field name="horses_involved_ids">
+                                <tree>
+                                    <field name="hisa_horse_id"/>
+                                    <field name="horse_name"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
