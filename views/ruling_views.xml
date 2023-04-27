@@ -8,8 +8,9 @@
                 <field name="hisa_ruling_id"/>
                 <field name="action_code"/>
                 <field name="customCode"/>
-                <field name="location_id"/>
+                <field name="location_full_name"/>
                 <field name="persons_involved_ids"/>
+                <field name="status"/>
             </tree>
         </field>
     </record>
@@ -24,6 +25,7 @@
                             <field name="hisa_ruling_id"/>
                             <field name="action_code"/>
                             <field name="customCode"/>
+                            <field name="location_full_name"/>
                             <field name="location_id"/>
                             <field name="date_ruling"/>
                             <field name="status"/>
@@ -49,20 +51,26 @@
                     </group>
                     <notebook>
                         <page string="Adjudicators">
-                            <tree>
+                            <form>
                                 <field name="adjudicators_hisa_board_id"/>
                                 <field name="adjudicators_hisa_board_panel_id"/>
                                 <field name="adjudicators_hisa_arbitral_panel_id"/>
                                 <field name="adjudicators_hisa_rsc_members_id"/>
                                 <field name="adjudicators_hisa_nsp_members_id"/>
                                 <field name="adjudicators_hisa_track_stewards_id"/>
-                            </tree>
+                            </form>
                         </page>
                         <page string="Person">
                             <field name="persons_involved_ids">
                                 <tree>
                                     <field name="hisa_person_id"/>
                                     <field name="person_name"/>
+                                    <field name="fine_amount"/>
+                                    <field name="suspension_start"/>
+                                    <field name="points_amount"/>
+                                    <field name="purse_forfeiture_percent_amount"/>
+                                    <field name="required_actions_description"/>
+                                    <field name="status"/>
                                 </tree>
                             </field>
                         </page>
@@ -73,6 +81,31 @@
                                     <field name="horse_name"/>
                                 </tree>
                             </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="hisausapps_persons_form" model="ir.ui.view">
+        <field name="name">ks.hisa.ruling.persons.involved (Persons)</field>
+        <field name="model">ks.hisa.ruling.persons.involved</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="hisa_person_id"/>
+                        <field name="status"/>
+                        <field name="date_entered"/>
+                        <field name="hearing_date"/>
+                        <field name="ruling_date"/>
+                    </group>
+                    <notebook>
+                        <page string="Fine and Installments">
+                        </page>
+                        <page string="Points and Purse">
+                        </page>
+                        <page string="Suspension">
                         </page>
                     </notebook>
                 </sheet>

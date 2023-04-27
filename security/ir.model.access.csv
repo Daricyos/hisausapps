@@ -6,3 +6,4 @@ hisausapps.access_ks_hisa_installments,access_ks_hisa_installments,hisausapps.mo
 hisausapps.access_ks_hisa_suspension,access_ks_hisa_suspension,hisausapps.model_ks_hisa_suspension,base.group_user,1,1,1,1
 hisausapps.access_ks_hisa_horses_involved,access_ks_hisa_horses_involved,hisausapps.model_ks_hisa_horses_involved,base.group_user,1,1,1,1
 hisausapps.access_ks_hisa_horses_suspension,access_ks_hisa_horses_suspension,hisausapps.model_ks_hisa_horses_suspension,base.group_user,1,1,1,1
+hisausapps.access_my_location,access_my_location,hisausapps.model_my_location,base.group_user,1,1,1,1
