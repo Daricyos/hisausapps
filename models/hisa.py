@@ -27,8 +27,8 @@ class HisaAPI:
 
     def get_location_autocomplete(self, location=None,):
         if location:
-            url = f'{self.link}location/autocomplete/'
-            response = self.request(method='GET', url=url, params=location)
+            url = f'{self.link}location/autocomplete/{location}'
+            response = self.request(method='GET', url=url)
             return response
         return False
     # def get_file_from_ruling(self, file_url='', ):

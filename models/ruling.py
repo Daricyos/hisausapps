@@ -48,6 +48,25 @@ class KeyHisausappsRuling(models.Model):
 
     # files_uri_ids = fields.One2many(comodel_name='ks.hisa.files.uri', inverse_name='hisa_ruling_id')
 
+    # location_name_id = fields.Char()
+    #
+    # @api.onchange('location_full_name')
+    # def _onchange_location_full_name(self):
+    #     if self.location_full_name:
+    #         self.location_name_id = self.location_full_name.id_local_name
+    #     else:
+    #         self.location_name_id = False
+
+    location_name_api = fields.Many2one('my.location', string='Location Name')
+
+    @api.depends('location_full_name')
+    def onchange_location_name_api(self):
+        for record in self:
+            if record.location_full_name:
+                record.location_name_api = record.location_full_name.id_local_name
+            else:
+                record.location_name_api = False
+
 
 class MyLocation(models.Model):
     _name = 'my.location'

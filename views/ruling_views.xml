@@ -26,6 +26,7 @@
                             <field name="action_code"/>
                             <field name="customCode"/>
                             <field name="location_full_name"/>
+                            <field name="location_name_api"/>
                             <field name="location_id"/>
                             <field name="date_ruling"/>
                             <field name="status"/>

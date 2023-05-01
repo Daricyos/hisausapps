@@ -38,6 +38,12 @@ class KeyHisausapps(models.Model):
         res = api.get_ruling_all(params=params)
         self.load_rulings(res, api)
 
+    def test_button(self):
+        self.ensure_one()
+        api = HisaAPI(key=self.key, )
+        l = api.get_location_autocomplete('')
+        print(l)
+
     def load_rulings(self, data, api):
         ruling_m = self.env['ks.hisa.ruling']
         for item in data:

@@ -6,7 +6,7 @@
 
     'category': 'E-commerce',
     'license': 'OPL-1',
-    'version': '16.0.0.0.0',
+    'version': '16.1.0.0.0',
 
     'depends': ['base',
                 ],

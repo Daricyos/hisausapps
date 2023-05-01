@@ -17,6 +17,7 @@
             <form>
                 <heeder>
                     <button name="button_get_ruling_all" type="object" string="Get Ruling All"/>
+                    <button name="test_button" type="object" string="Get Test"/>
                 </heeder>
                 <sheet>
                     <group>
